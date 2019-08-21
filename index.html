@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Part-2 Todo List</title>
+
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="top-nav hover-on-menu">
+                <i class="fas fa-bars top-nav-icon" onclick="sideNavToggleDisplay()"></i>
+                <a href="Javascript:display('Todo-List')" class="hovered">TODO List</a>
+            </nav>
+        </header>
+
+        <main>
+            <div id="content">
+                <div id="Todo-List-Div" class="main-content">
+                    <input oninput="autoPopulate(this)" id="searchbar" type="text" placeholder="Search or add tasks..">
+                    <button onclick="filterTasks()" id="searchbutton"><i class="fas fa-search fa-2x"></i></button>
+                    <button onclick="addTask()" id="add-to-list">Add</button>
+
+                    <div id="auto-fill-list">
+                        <ul></ul>
+                    </div>
+
+                    <div id="task-list">
+                        <ul>
+                            <li>Task
+                                 <button class="edit-button">Edit</button>
+                                 <button class="remove-button"><i class="fas fa-trash-alt"></i></button>
+                             </li>
+                            <li>Task  <button class="edit-button">Edit</button> <button class="remove-button"><i class="fas fa-trash-alt"></i></button> </li>
+                            <li>Task  <button class="edit-button">Edit</button> <button class="remove-button"><i class="fas fa-trash-alt"></i></button> </li>
+                            <li>Task  <button class="edit-button">Edit</button> <button class="remove-button"><i class="fas fa-trash-alt"></i></button> </li>
+                            <li>Task  <button class="edit-button">Edit</button> <button class="remove-button"><i class="fas fa-trash-alt"></i></button> </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="Users-Div" class="main-content"><h1>Users</h1></div>
+                <div id="About-Div" class="main-content"><h1>About</h1></div>
+            </div>
+            <nav class="side-nav">
+                <button onclick="display('Todo-List')">Todo-List</button>
+                <button onclick="display('Users')">Users</button>
+                <button onclick="display('About')">About</button>
+                <button onclick="Javascript:void(0)">Logout</button>
+            </nav>
+        </main>
+
+        <footer>
+            Image by <a target="_blank" href="https://pixabay.com/users/Lars_Nissen_Photoart-2780243/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3188882">Lars_Nissen_Photoart</a>
+            from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3188882">Pixabay</a>
+        </footer>
+
+        <script src="https://kit.fontawesome.com/7cc158b535.js"></script>
+        <script src="js/guid.js" charset="utf-8"></script>
+        <script src="js/EventHandlers.js" charset="utf-8"></script>
+        <script src="js/script.js" charset="utf-8"></script>
+    </body>
+</html>
