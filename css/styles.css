@@ -12,6 +12,10 @@ body {
     background-size: cover;
 }
 
+guid {
+    display: none;
+}
+
 footer {
     position: fixed;
     width: 100%;
@@ -177,7 +181,7 @@ footer {
 #auto-fill-list {
     position: absolute;
     background: white;
-    width: 10%;
+    width: 20%;
     border-right: 1px solid black;
     display: none;
 }

@@ -32,7 +32,7 @@ function filterTasks() {
 
     for (let task of availableTasks) {
         if (task.task.startsWith(document.getElementById('searchbar').value))
-            list.innerHTML += '<li>' + task.task + '<button class="edit-button">Edit</button> <button class="remove-button"><i class="fas fa-trash-alt"></i></button></li>';
+            list.innerHTML += `<li><guid>${task.id}</guid><taskName>${task.task}</taskName><button class="edit-button">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
     }
 }
 
@@ -52,4 +52,13 @@ function autoPopulate(element) {
 function fillSearchBar(element) {
     document.querySelector('div#auto-fill-list').style.display = 'none';
     document.getElementById('searchbar').value = element.innerText;
+}
+
+function removeTask(element){
+    // [guid, taskName, button.edit, button.remove]
+    let children = element.parentNode.children;
+    let guid = parseInt(children[0].innerText);
+
+    availableTasks = availableTasks.filter(task => task.id != guid);
+    displayAllTasks();
 }

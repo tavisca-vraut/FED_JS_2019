@@ -3,7 +3,7 @@ class IdManager {
         this.id = 1;
         this.availableFreeIds = [];
     }
-
+    
     getId()
     {
         if (this.availableFreeIds.length !== 0)
