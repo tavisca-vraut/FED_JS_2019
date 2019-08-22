@@ -32,8 +32,10 @@ function filterTasks() {
 
     for (let task of availableTasks) {
         if (task.task.startsWith(document.getElementById('searchbar').value))
-            list.innerHTML += `<li><guid>${task.id}</guid><taskName>${task.task}</taskName><button class="edit-button">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
+            list.innerHTML += `<li><guid>${task.id}</guid><taskName id='${task.id}' contentEditable="false">${task.task}</taskName><button class="edit-button" onclick="editTask(this)">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
     }
+
+    document.getElementById('searchbar').value = "";
 }
 
 function autoPopulate(element) {
@@ -60,5 +62,30 @@ function removeTask(element){
     let guid = parseInt(children[0].innerText);
 
     availableTasks = availableTasks.filter(task => task.id != guid);
+    displayAllTasks();
+}
+
+function editTask(element) {
+    let parent = element.parentNode;
+
+    let editableElement = parent.children[1];
+
+    editableElement.contentEditable = "true";
+
+    element.innerHTML = "Save";
+    element.setAttribute('onclick', 'saveTask(this)')
+}
+
+function saveTask(element) {
+    let parent = element.parentNode;
+
+    let taskId = parent.children[1].id;
+    let newTaskValue = parent.children[1].innerText;
+
+    availableTasks.forEach(item => {
+        if (item.id == taskId)
+            item.task = newTaskValue;
+    });
+
     displayAllTasks();
 }

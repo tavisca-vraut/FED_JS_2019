@@ -21,7 +21,7 @@ function displayAllTasks() {
     list.innerHTML = "";
 
     for (let task of availableTasks) {
-        list.innerHTML += `<li><guid>${task.id}</guid><taskName>${task.task}</taskName><button class="edit-button">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
+        list.innerHTML += `<li><guid>${task.id}</guid><taskName id='${task.id}' contentEditable="false">${task.task}</taskName><button onclick="editTask(this)" class="edit-button">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
     }
 }
 
