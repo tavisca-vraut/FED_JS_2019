@@ -1,28 +1,31 @@
 let availableTasks;
+let displayBuffer;
+let paginator;
 let idManager;
+
+let numberOfTasksPerTab = 8;
+let alertDisplayTime = 3000; // 3 seconds
 
 window.onload = () => {
     document.querySelector("nav.side-nav").classList.add('displayToggler');
 
-    initializeVariables();
+    availableTasks = [];
+    displayBuffer = [];
+    idManager = new IdManager();
 
-    display("");
+    displayTab("");
 
     generateDummyTodo();
-}
-
-function initializeVariables() {
-    availableTasks = [];
-    idManager = new IdManager();
 }
 
 function displayAllTasks() {
     let list = document.querySelector('div#task-list ul');
     list.innerHTML = "";
 
-    for (let task of availableTasks) {
-        list.innerHTML += `<li><guid>${task.id}</guid><taskName id='${task.id}' contentEditable="false">${task.task}</taskName><button onclick="editTask(this)" class="edit-button">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
+    for (let task of displayBuffer) {
+        list.appendChild(constructLi(task));
     }
+    handleFirstOrLastPage();
 }
 
 function generateDummyTodo() {
@@ -37,7 +40,42 @@ function generateDummyTodo() {
             availableTasks.push({id: idManager.getId(), "task": task.title});
         }
 
+        paginator = new Pagination(availableTasks, numberOfTasksPerTab);
+        displayBuffer = paginator.getFirst();
+
         displayAllTasks();
     };
+}
 
+function constructLi(task) {
+    const li = document.createElement('li');
+
+    const guid = document.createElement('guid');
+    guid.innerText = task.id;
+    li.appendChild(guid);
+
+    const taskName = document.createElement('taskName');
+    taskName.id = task.id;
+    taskName.contentEditable = false;
+    taskName.innerText = task.task;
+    li.appendChild(taskName);
+
+    const editButton = document.createElement('button');
+    editButton.setAttribute('onclick', 'editTask(this)');
+    editButton.classList.add('edit-button');
+    editButton.innerText = "Edit"
+    li.appendChild(editButton);
+
+    const removeTaskButton = document.createElement('button');
+    removeTaskButton.setAttribute('onclick', 'removeTask(this)');
+    removeTaskButton.classList.add('remove-button');
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-trash-alt');
+    removeTaskButton.appendChild(deleteIcon);
+
+    li.appendChild(removeTaskButton);
+
+    return li;
 }

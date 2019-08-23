@@ -2,7 +2,11 @@ function sideNavToggleDisplay() {
     document.querySelector("nav.side-nav").classList.toggle('displayToggler');
 }
 
-function display(item) {
+function hideAutoPopulate() {
+    document.querySelector('div#auto-fill-list').style.display = 'none';
+}
+
+function displayTab(item) {
     for (let div of document.querySelectorAll("div#content > div")){
         div.style.display = "none";
     };
@@ -15,27 +19,35 @@ function addTask() {
     document.querySelector('div#auto-fill-list').style.display = 'none';
 
     let task = document.getElementById('searchbar');
-    if (task.value === "") return;
+    if (task.value === "") {
+        document.getElementById('task-not-added-message').style.display = "block";
+        setTimeout(() => document.getElementById('task-not-added-message').style.display = "none", alertDisplayTime);
+        return;
+    }
 
     availableTasks.push({id: idManager.getId(), "task": task.value});
 
     task.value = "";
 
+    paginator = new Pagination(availableTasks, numberOfTasksPerTab);
+    displayBuffer = paginator.getFirst();
+
+    document.getElementById('task-added-message').style.display = "block";
+    setTimeout(() => document.getElementById('task-added-message').style.display = "none", alertDisplayTime);
+
     displayAllTasks();
 }
 
 function filterTasks() {
-    document.querySelector('div#auto-fill-list').style.display = 'none';
+    hideAutoPopulate();
 
-    let list = document.querySelector('div#task-list ul');
-    list.innerHTML = "";
-
-    for (let task of availableTasks) {
-        if (task.task.startsWith(document.getElementById('searchbar').value))
-            list.innerHTML += `<li><guid>${task.id}</guid><taskName id='${task.id}' contentEditable="false">${task.task}</taskName><button class="edit-button" onclick="editTask(this)">Edit</button> <button onclick="removeTask(this)" class="remove-button"><i class="fas fa-trash-alt"></i></button></li>`;
-    }
-
+    let matchedTasks = availableTasks.filter(task => task.task.toLowerCase().startsWith(document.getElementById('searchbar').value.toLowerCase()));
     document.getElementById('searchbar').value = "";
+
+    paginator = new Pagination(matchedTasks, numberOfTasksPerTab);
+    displayBuffer = paginator.getFirst();
+
+    displayAllTasks();
 }
 
 function autoPopulate(element) {
@@ -62,6 +74,15 @@ function removeTask(element){
     let guid = parseInt(children[0].innerText);
 
     availableTasks = availableTasks.filter(task => task.id != guid);
+
+    idManager.addFreeId(guid);
+
+    paginator = new Pagination(availableTasks, numberOfTasksPerTab);
+    displayBuffer = paginator.getFirst();
+
+    document.getElementById('task-removed-message').style.display = "block";
+    setTimeout(() => document.getElementById('task-removed-message').style.display = "none", alertDisplayTime);
+
     displayAllTasks();
 }
 
@@ -82,10 +103,44 @@ function saveTask(element) {
     let taskId = parent.children[1].id;
     let newTaskValue = parent.children[1].innerText;
 
+    if (newTaskValue === "") {
+        document.getElementById('task-not-added-message').style.display = "block";
+        setTimeout(() => document.getElementById('task-not-added-message').style.display = "none", alertDisplayTime);
+        parent.children[1].innerText = "*Please enter something*";
+        return;
+    }
+
     availableTasks.forEach(item => {
-        if (item.id == taskId)
+        if (item.id == taskId) {
             item.task = newTaskValue;
+
+            document.getElementById('task-modified').style.display = "block";
+            setTimeout(() => document.getElementById('task-modified').style.display = "none", alertDisplayTime);
+        }
     });
 
     displayAllTasks();
+}
+
+function nextFrame() {
+    let next = paginator.getNext();
+
+    if (next === false) return;
+
+    displayBuffer = next;
+    displayAllTasks();
+}
+
+function previousFrame() {
+    let prev = paginator.getPrevious();
+
+    if (prev === false) return;
+
+    displayBuffer = prev;
+    displayAllTasks();
+}
+
+function handleFirstOrLastPage() {
+    document.getElementById('previous').disabled = paginator.currentPage === paginator.startPage;
+    document.getElementById('next').disabled = paginator.currentPage === paginator.endPage;
 }
