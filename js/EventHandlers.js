@@ -25,6 +25,16 @@ function addTask() {
         return;
     }
 
+    for (let t of availableTasks) {
+        console.log(t);
+        console.log(task);
+        if (t.task.toLowerCase() === task.value.toLowerCase()) {
+            document.getElementById('task-duplicate').style.display = "block";
+            setTimeout(() => document.getElementById('task-duplicate').style.display = "none", alertDisplayTime);
+            return;
+        }
+    }
+
     availableTasks.push({id: idManager.getId(), "task": task.value});
 
     task.value = "";

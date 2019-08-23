@@ -20,21 +20,25 @@
                 <div id="task-removed-message">Info: Task completed</div>
                 <div id="task-not-added-message">Error: Task field can't be empty</div>
                 <div id="task-modified">Success: Task updated successfully</div>
+                <div id="task-duplicate">Failed: Task already exists</div>
             </div>
             <div id="content">
                 <div id="Todo-List-Div" class="main-content">
                     <input onclick="autoPopulate(this)"
                            oninput="autoPopulate(this)"
                            id="searchbar" type="text" placeholder="Search or add tasks..">
-                    <button onclick="filterTasks()" id="searchbutton"> Search </button>
-                    <button onclick="addTask()" id="add-to-list">Add</button>
+
+                    <span id="search-bar-buttons">
+                        <button onclick="filterTasks()" id="searchbutton"> Search </button>
+                        <button onclick="addTask()" id="add-to-list">Add</button>
+                    </span>
 
                     <div id="auto-fill-list"> <ul></ul> </div>
                     <div id="task-list"> <ul></ul> </div>
 
                     <div id="pagination">
-                        <button id="previous" onclick="previousFrame()"> << </button>
-                        <button id="next" onclick="nextFrame()"> >> </button>
+                        <button id="previous" onclick="previousFrame()"> Prev </button>
+                        <button id="next" onclick="nextFrame()"> Next </button>
                     </div>
                 </div>
 
