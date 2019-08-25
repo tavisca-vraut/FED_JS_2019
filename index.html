@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Part-2 Todo List</title>
+
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="top-nav hover-on-menu">
+                <i class="fas fa-bars top-nav-icon" onclick="sideNavToggleDisplay()"></i>
+                <a href="Javascript:displayTab('Todo-List')" class="hovered">TODO List</a>
+            </nav>
+        </header>
+
+        <main>
+            <div id="messages">
+                <div id="task-added-message">Success: Task added successfully</div>
+                <div id="task-removed-message">Info: Task completed</div>
+                <div id="task-not-added-message">Error: Task field can't be empty</div>
+                <div id="task-modified">Success: Task updated successfully</div>
+                <div id="task-duplicate">Failed: Task already exists</div>
+            </div>
+            <div id="content">
+                <div id="Todo-List-Div" class="main-content">
+                    <input onclick="autoPopulate(this)"
+                           oninput="autoPopulate(this)"
+                           id="searchbar" type="text" placeholder="Search or add tasks..">
+
+                    <span id="search-bar-buttons">
+                        <button onclick="filterTasks()" id="searchbutton"> Search </button>
+                        <button onclick="addTask()" id="add-to-list">Add</button>
+                    </span>
+
+                    <div id="auto-fill-list"> <ul></ul> </div>
+                    <div id="task-list"> <ul></ul> </div>
+
+                    <div id="pagination">
+                        <button id="previous" onclick="previousFrame()"> Prev </button>
+                        <button id="next" onclick="nextFrame()"> Next </button>
+                    </div>
+                </div>
+
+                <div id="Users-Div" class="main-content"><h1>Users</h1></div>
+
+                <div id="About-Div" class="main-content"><h1>About</h1></div>
+            </div>
+            <nav class="side-nav">
+                <button onclick="displayTab('Todo-List')">Todo-List</button>
+                <button onclick="displayTab('Users')">Users</button>
+                <button onclick="displayTab('About')">About</button>
+                <button onclick="Javascript:void(0)">Logout</button>
+            </nav>
+        </main>
+
+        <footer>
+            Image by <a target="_blank" href="https://pixabay.com/users/Lars_Nissen_Photoart-2780243/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3188882">Lars_Nissen_Photoart</a>
+            from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3188882">Pixabay</a>
+        </footer>
+
+        <script src="https://kit.fontawesome.com/7cc158b535.js"></script>
+        <script src="js/pagination.js" charset="utf-8"></script>
+        <script src="js/guid.js" charset="utf-8"></script>
+        <script src="js/EventHandlers.js" charset="utf-8"></script>
+        <script src="js/script.js" charset="utf-8"></script>
+    </body>
+</html>

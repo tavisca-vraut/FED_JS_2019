@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-image: url("..\\images\\background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+guid {
+    display: none;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    bottom: 0;
+}
+
+.top-nav {
+    position: absolute;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.top-nav a:visited {
+    color: white;
+}
+
+.top-nav a:hover {
+    border-top: 3px solid white;
+}
+
+.top-nav-icon {
+    float: left;
+    padding-left: 2%;
+}
+
+.side-nav {
+    background-color: black;
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 5.05%;
+    width: 20%;
+}
+
+.side-nav button {
+    display: block;
+    font-size: 2em;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    color: white;
+    border: none;
+    width: 100%;
+    background-color: inherit;
+}
+
+.side-nav button:hover {
+    color: grey;
+    border-right: 3px solid white;
+}
+
+.displayToggler {
+    display: none;
+}
+
+.hovered {
+    color: white;
+}
+
+.main-content {
+    background-color: white;
+    margin-top: 10%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.remove-button {
+    float: right;
+    margin-right: 2%;
+    font-size: 1em;
+    color: darkred;
+    background: none;
+    border: none;
+}
+
+.edit-button {
+    float: right;
+    margin-right: 2%;
+    font-size: 1em;
+    color: green;
+    background: none;
+    border: none;
+}
+
+#content {
+    position: absolute;
+    margin-top: 5%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+@media screen and (max-width: 800px) {
+    #content {
+        margin-top: 7%;
+    }
+
+    .top-nav a {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #content {
+        margin-top: 10%;
+    }
+}
+
+#searchbar {
+    font-size: 1.6em;
+    padding: 2%;
+    width: 72%;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+@media screen and (max-width: 1300px) {
+    #searchbar {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    #search-bar-buttons {
+        display: block;
+        margin-top: 1%;
+    }
+
+    #search-bar-buttons button {
+        margin-left: 10%;
+        width: 80%;
+        margin-bottom: 1%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #searchbar {
+        font-size: 1em;
+    }
+}
+
+#Todo-List-Div {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#searchbutton,
+#add-to-list {
+    font-size: 1.2em;
+    background-color: black;
+    color: white;
+    border: 0;
+    padding: 1%;
+    width: fit-content;
+}
+
+#add-to-list:hover,
+#searchbutton:hover {
+    color: grey;
+}
+
+#task-list {
+    margin-top: 5%;
+}
+
+#task-list li {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+#auto-fill-list {
+    position: absolute;
+    background: yellow;
+    width: 20%;
+    border-right: 1px solid black;
+    display: none;
+    max-height: 350px;
+    overflow: auto;
+}
+
+#auto-fill-list li {
+    padding-left: 1%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid black;
+}
+
+#task-list li:hover,
+#auto-fill-list li:hover {
+    background-color: black;
+    color: white;
+}
+
+#task-list li:hover .remove-button {
+    color: red;
+}
+
+#task-list li:hover .edit-button {
+    color: lightgreen;
+}
+
+#task-list li:hover .remove-button:hover,
+#task-list li:hover .edit-button:hover {
+    color: white;
+}
+
+#pagination {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+}
+
+#pagination button {
+    font-size: 1em;
+    margin: 2%;
+    padding: 1%;
+    width: fit-content;
+    color: white;
+    background-color: black;
+}
+
+#pagination button:hover {
+    color: grey;
+}
+
+#pagination button[disabled] {
+    color: grey;
+}
+
+#previous {
+    margin-right: none;
+}
+
+#next {
+    margin-left: none;
+}
+
+#messages {
+    width: 100%;
+    position: absolute;
+}
+
+#messages div {
+    width: 40%;
+    margin:auto;
+    margin-top: 3%;
+    border-radius: 12px;
+    font-size: 1.3em;
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding: .75rem 1.25rem;
+    display: none;
+}
+
+#task-added-message {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+#task-removed-message {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+#task-not-added-message,
+#task-duplicate {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#task-modified {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
