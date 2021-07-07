@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Todo List</title>
+
+        <script src="https://kit.fontawesome.com/7cc158b535.js"></script>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="GUID.js"></script>
+        <script src="MenuHandlers.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+
+            <header>
+                <nav class="navbar">
+                    <i id="hamburger" class="fas fa-bars"></i>
+                    <h1 id="heading">TODO LIST</h1>
+                </nav>
+            </header>
+
+            <div class="main">
+                <div id="MenuButton">
+                    <div id="MenuBar" class="Menu">
+                        <ul>
+                              <li id="todo-tab">Todo List</li>
+                              <li id="users-tab">Users</li>
+                              <li id="about-tab">About</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="todo-div" class="container todo-list-search">
+                    <div>
+                        <input oninput="inputTriggersSearch()" type="search" id="searchbar" placeholder="Add or Search task">
+                        <button id="searchButton"><i class="fas fa-search"></i></button>
+                        <button id="add-new-item">Add Item</button>
+                    </div>
+
+                    <div class="todo-list-items">
+                        <ol id="list">
+                        </ol>
+                        <p id='no-remaining-task'>You are all set.</p>
+                    </div>
+
+                </div>
+
+                <div id="users-div">
+                </div>
+
+                <div id="about-div">
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>

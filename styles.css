@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+}
+
+nav h1 {
+    display: inline;
+}
+
+ul {
+  margin-top: 5%;
+}
+
+ul li {
+  padding: 3% 6%;
+  font-size: 2em;
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-radius: 2%;
+}
+
+ol li {
+    padding: 1% 2%;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+}
+
+li:hover {
+    background-color: black;
+    color: white;
+    transition: 0.2s;
+}
+
+ul li:hover {
+  font-size: 2.5rem;
+}
+
+ol li:hover {
+    font-size: 1.5rem;
+}
+
+.container {
+    margin: auto;
+    margin-top: 0.5%;
+    width: 80%;
+    padding: 2%;
+}
+
+.navbar {
+    text-align: center;
+    color: white;
+    font-size: 2.5em;
+    background: black;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 5%;
+    padding-right: 2%;
+}
+
+.todo-list-search {
+    grid-column-start: 2;
+    grid-column-end: 6;
+
+}
+
+.todo-list-items {
+    margin-top: 7%;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    width: 60%;
+}
+
+.remove {
+    background-color: inherit;
+    color: inherit;
+    font-size: 1em;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    float: right;
+    outline: none;
+    border-radius: 5%;
+}
+
+.remove:hover {
+    color: red;
+}
+
+#hamburger {
+    display: none;
+}
+
+#searchbar {
+    width: 60%;
+    font-size: 2em;
+    outline: none;
+    border-bottom: 1px solid black;
+    background-color: rgb(232,228,228);
+    padding: 1%;
+    color: rgb(61,58,58);
+}
+
+#searchButton {
+    padding-left: 1%;
+    font-size: 1.5em;
+    background: none;
+    color: darkgreen;
+    outline: none;
+}
+
+#add-new-item {
+    font-size: 1.5em;
+    background: none;
+    outline: none;
+    padding-left: 2%;
+    color: darkgreen;
+    text-decoration: none;
+}
+
+#searchButton:hover,
+#add-new-item:hover {
+    text-decoration: underline;
+    color: lightgreen;
+}
+
+#no-remaining-task {
+    font-size: 2em;
+    color: darkgreen;
+}
+
+.displayBlock {
+    display: block;
+}
+
+@media screen and (max-width:1024px)
+{
+    nav h1 {
+        font-size: 1em;
+    }
+
+    div.container.todo-list-search {
+        padding: 0;
+        margin: 0;
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .main {
+        display: block;
+    }
+
+    .Menu {
+        display: none;
+        position: absolute;
+    }
+
+    .todo-list-items {
+        width: 91%;
+    }
+
+    .Menu li {
+        border-left: 0;
+        background-color: #555;
+        width: 100%;
+        color: white;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #hamburger {
+        display: inline;
+        float: left;
+        padding-left: 2%;
+        padding-top: 1%;
+    }
+
+    #hamburger:hover {
+        color: grey;
+    }
+
+    #searchbar {
+        margin-top: 10%;
+        width: 91%;
+    }
+
+    #add-new-item {
+        display: block;
+        padding-left: 0;
+        margin-top: 2%;
+    }
+}
